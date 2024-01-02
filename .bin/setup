@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -e
+
+if `command -v deactivate`; then
+    deactivate
+fi
+
+rm -rf .venv activate ./*.egg-info dist
+python3 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install --upgrade pip setuptools wheel
+if [ -f "requirements.txt" ]; then
+    python3 -m pip install -r requirements.txt
+fi
