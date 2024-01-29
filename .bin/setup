@@ -6,7 +6,7 @@ if `command -v deactivate`; then
 fi
 
 # create virtual environment
-rm -rf .venv activate ./*.egg-info dist
+rm -rf .venv ./*.egg-info dist
 python3 -m venv .venv
 source .venv/bin/activate
 

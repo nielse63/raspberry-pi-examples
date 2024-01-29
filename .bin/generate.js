@@ -43,11 +43,11 @@ const generateReadme = async ({ title, dir, snakeName, kebabName }) => {
 
 ## Wiring
 
-| DS18B20 | Raspberry Pi |
-| ------- | ------------ |
-| VCC     | 3v3          |
-| GND     | GND          |
-| ...     | ...          |
+| DS18B20 | BCM | Pin |
+| ------- | --- | --- |
+| VCC     | 3v3 | 1   |
+| GND     | GND | 5   |
+| ...     | ... | ... |
 
 ![${title}](../assets/${path.basename(dir)}.jpg)
 
@@ -56,10 +56,7 @@ const generateReadme = async ({ title, dir, snakeName, kebabName }) => {
 Install dependencies:
 
 \`\`\`bash
-sudo apt-get update -y
-sudo apt-get updgrade -y
-sudo apt-get install build-essential python-dev -y
-python3 -m pip install pkg1 pkg2
+python3 -m pip install pkg1
 \`\`\`
 
 ## Usage
@@ -80,7 +77,10 @@ def main():
     print("Running ${title}")
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        exit(1)
 `;
   await fsp.writeFile(path.resolve(dir, `${snakeName}.py`), template);
 };
