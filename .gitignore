@@ -162,3 +162,4 @@ cython_debug/
 # custom
 node_modules
 .venv
+copy-to-remote.sh
