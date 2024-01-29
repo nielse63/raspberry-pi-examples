@@ -47,7 +47,7 @@ Install kernal dependencies:
 sudo apt-get update -y
 sudo apt-get updgrade -y
 sudo apt-get install build-essential python-dev python-smbus -y
-python3 -m pip install gpiozero lgpio RPi.GPIO pigpio
+python3 -m pip install gpiozero lgpio RPi.GPIO pigpio spidev
 ```
 
 ## Usage
