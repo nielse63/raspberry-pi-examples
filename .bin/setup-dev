@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -e
+
+if ! [ -d ".venv" ]; then
+    python3 -m venv .venv
+fi
+
+if [[ "$VIRTUAL_ENV" == "" ]]; then
+    source .venv/bin/activate
+fi
+
+# install dev dependencies
+python3 -m pip install black==24.1.1 pre-commit==3.6.0
+
+# install pre-commit hooks
+pre-commit install
+
+# install generate script
+cd .bin
+npm ci
+cd ..
