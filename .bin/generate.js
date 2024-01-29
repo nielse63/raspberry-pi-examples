@@ -95,14 +95,13 @@ const question = (message) => {
 
 const main = async () => {
   const name = await question("Name: ");
-  const type = await question("Type: ");
-  const title = startCase(`${name} ${type}`);
+  const title = startCase(name);
   rl.close();
 
   const snakeName = snakeCase(name);
   const kebabName = kebabCase(name);
-  const dir = path.resolve(__dirname, "../", `${kebabName}-${type}`);
-  const data = { name, title, type, dir, snakeName, kebabName };
+  const dir = path.resolve(__dirname, "../", `${kebabName}`);
+  const data = { name, title, dir, snakeName, kebabName };
   await ensureDir(dir);
   await generateReadme(data);
   await generateScript(data);
