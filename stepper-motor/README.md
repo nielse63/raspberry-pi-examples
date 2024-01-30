@@ -4,6 +4,7 @@
 - [Wiring](#wiring)
 - [Setup](#setup)
 - [Usage](#usage)
+- [Resources](#resources)
 
 ## Products
 
@@ -36,3 +37,8 @@ python3 -m pip RPi.GPIO
 ```bash
 python3 ./stepper_motor.py
 ```
+
+## Resources
+
+- [Driving a 28BYJ-48 Stepper Motor & ULN2003 driver with a Raspberry Pi](https://ben.akrin.com/driving-a-28byj-48-stepper-motor-uln2003-driver-with-a-raspberry-pi/)
+- [Controlling Stepper Motors using Python with a Raspberry Pi](https://keithweaverca.medium.com/controlling-stepper-motors-using-python-with-a-raspberry-pi-b3fbd482f886)

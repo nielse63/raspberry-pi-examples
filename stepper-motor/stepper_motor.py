@@ -2,9 +2,10 @@
 import RPi.GPIO as GPIO
 import time
 
-step_count = 4096
+max_step_count = 512  # 512 steps = 1 revolution
 control_pins = [7, 11, 13, 15]
 halfstep_seq = [
+    [1, 0, 0, 1],
     [1, 0, 0, 0],
     [1, 1, 0, 0],
     [0, 1, 0, 0],
@@ -12,8 +13,10 @@ halfstep_seq = [
     [0, 0, 1, 0],
     [0, 0, 1, 1],
     [0, 0, 0, 1],
-    [1, 0, 0, 1],
 ]
+step_count = len(halfstep_seq)
+direction = -1  # -1 = clockwise, 1 = counter-clockwise
+speed_delay = 0.003
 
 
 def setup():
@@ -32,11 +35,18 @@ def cleanup():
 def main():
     setup()
 
-    for i in range(0, step_count):
+    step_counter = 0
+
+    for i in range(0, max_step_count):
         for halfstep in range(0, len(halfstep_seq)):
             for pin in range(0, len(control_pins)):
-                GPIO.output(control_pins[pin], halfstep_seq[halfstep][pin])
-            time.sleep(0.002)
+                GPIO.output(control_pins[pin], halfstep_seq[step_counter][pin])
+            step_counter += direction
+            if step_counter >= step_count:
+                step_counter = 0
+            if step_counter < 0:
+                step_counter = step_count + direction
+            time.sleep(speed_delay)
     cleanup()
 
 
