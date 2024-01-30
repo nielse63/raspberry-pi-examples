@@ -3,7 +3,7 @@ import RPi.GPIO as GPIO
 import time
 
 max_step_count = 512  # 512 steps = 1 revolution
-control_pins = [7, 11, 13, 15]
+control_pins = [4, 17, 27, 22]
 halfstep_seq = [
     [1, 0, 0, 1],
     [1, 0, 0, 0],
@@ -20,7 +20,7 @@ speed_delay = 0.003
 
 
 def setup():
-    GPIO.setmode(GPIO.BOARD)
+    GPIO.setmode(GPIO.BCM)
     for pin in control_pins:
         GPIO.setup(pin, GPIO.OUT)
         GPIO.output(pin, GPIO.LOW)
